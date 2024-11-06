@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>臺南市警察局同仁網</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #1a4f8b;
+            --secondary-blue: #2d71b9;
+            --light-blue: #e9f0f9;
+            --hover-blue: #153d6b;
+        }
+
+        body {
+            font-family: "微軟正黑體", sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        /* 頂部導航欄樣式 */
+        .navbar {
+            background-color: var(--primary-blue);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 0.5rem 1rem;
+        }
+
+        .navbar-brand {
+            color: white !important;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-brand img {
+            height: 40px;
+            margin-right: 10px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .nav-user-img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* 左側選單樣式 */
+        #sidebar {
+            width: 280px;
+            background-color: white;
+            min-height: calc(100vh - 56px);
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)),
+                url('https://images.unsplash.com/photo-1596079890744-c1a0462d0975?w=280&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* 左側選單頭部個人資訊 */
+        .sidebar-profile {
+            padding: 20px;
+            text-align: center;
+            background: linear-gradient(to bottom, var(--primary-blue), var(--secondary-blue));
+            color: white;
+        }
+
+        .profile-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid white;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            object-fit: cover;
+        }
+
+        /* 選單項目樣式 */
+        .nav-link {
+            color: var(--primary-blue);
+            padding: 12px 20px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            border-radius: 4px;
+            margin: 2px 10px;
+        }
+
+        .nav-link:hover {
+            background-color: var(--light-blue);
+            transform: translateX(5px);
+            color: var(--primary-blue);
+        }
+
+        .nav-link i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* 主內容區域 */
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+
+        /* 歡迎橫幅 */
+        .welcome-banner {
+            background: linear-gradient(rgba(26, 79, 139, 0.85), rgba(45, 113, 185, 0.85)), 
+                url('https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=1200&h=300&fit=crop') center/cover;
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 快速存取卡片 */
+        .quick-access-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s;
+            border: none;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            height: 100%;
+        }
+
+        .quick-access-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .quick-access-card img {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        /* 最新消息卡片 */
+        .news-card {
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .news-item {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            transition: all 0.3s;
+        }
+
+        .news-item:hover {
+            background-color: var(--light-blue);
+        }
+
+        .news-item img {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            margin-right: 15px;
+            object-fit: cover;
+        }
+
+        /* 日曆區塊 */
+        .calendar-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .calendar-event {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .calendar-event img {
+            width: 40px;
+            height: 40px;
+            margin-right: 15px;
+            border-radius: 5px;
+            object-fit: cover;
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 768px) {
+            #sidebar {
+                margin-left: -280px;
+                position: fixed;
+                z-index: 1000;
+                height: 100vh;
+            }
+
+            #sidebar.active {
+                margin-left: 0;
+            }
+
+            .overlay {
+                display: none;
+                position: fixed;
+                width: 100vw;
+                height: 100vh;
+                background: rgba(0,0,0,0.5);
+                z-index: 999;
+                opacity: 0;
+                transition: all 0.5s ease-in-out;
+            }
+
+            .overlay.active {
+                display: block;
+                opacity: 1;
+            }
+        }
+
+        /* 動畫效果 */
+        .fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 標籤樣式 */
+        .tag {
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        .tag-danger {
+            background-color: #ffe5e5;
+            color: #dc3545;
+        }
+
+        .tag-info {
+            background-color: #e5f6ff;
+            color: #0dcaf0;
+        }
+
+        .tag-success {
+            background-color: #e5ffe5;
+            color: #198754;
+        }
+    </style>
+</head>
+<body>
+    <!-- 頂部導航欄 -->
+    <nav class="navbar">
+        <div class="container-fluid">
+            <button id="sidebarCollapse" class="btn btn-link d-lg-none">
+                <i class="fas fa-bars text-white"></i>
+            </button>
+            <a class="navbar-brand" href="#">
+    <svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" class="me-2">
+        <circle cx="20" cy="20" r="19" fill="#1a4f8b" stroke="#ffffff" stroke-width="2"/>
+        <path d="M20 8 L20 32 M8 20 L32 20" stroke="white" stroke-width="2"/>
+        <circle cx="20" cy="20" r="8" fill="white"/>
+        <text x="20" y="23" text-anchor="middle" fill="#1a4f8b" style="font-size: 10px; font-weight: bold;">警</text>
+    </svg>
+    臺南市警察局同仁網
+</a>
+            <div class="dropdown">
+                <button class="btn btn-link text-white dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=32&h=32&fit=crop" alt="使用者頭像" class="nav-user-img">
+                    <span class="ms-2">張大明</span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#"><i class="fas fa-user-cog me-2"></i>個人設定</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt me-2"></i>登出</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="d-flex">
+        <!-- 左側選單 -->
+        <nav id="sidebar">
+            <div class="sidebar-profile">
+                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=100&h=100&fit=crop" alt="使用者頭像" class="profile-image">
+                <h6 class="mb-1">張大明 警員</h6>
+                <small>第三分局 交通組</small>
+            </div>
+
+            <div class="nav flex-column mt-3">
+                <a href="#newsSubmenu" data-bs-toggle="collapse" class="nav-link">
+                    <i class="fas fa-scroll"></i>
+                    <span>公告系統</span>
+                    <i class="fas fa-chevron-down ms-auto"></i>
+                </a>
+                <div class="collapse" id="newsSubmenu">
+                    <a href="#" class="nav-link ms-4">
+                        <i class="fas fa-bullhorn"></i>
+                        <span>全警局公告</span>
+                    </a>
+                    <a href="#" class="nav-link ms-4">
+                        <i class="fas fa-building"></i>
+                        <span>單位公告</span>
+                    </a>
+                </div>
+
+                <a href="#" class="nav-link">
+                    <i class="fas fa-link"></i>
+                    <span>連結專區</span>
+                </a>
+                <a href="#" class="nav-link">
+                    <i class="fas fa-folder"></i>
+                    <span>附件上傳系統</span>
+                </a>
+                <a href="#" class="nav-link">
+                    <i class="fas fa-clipboard-check"></i>
+                    <span>待辦事項</span>
+                </a>
+                <a href="#" class="nav-link">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>行事曆</span>
+                </a>
+                <a href="#" class="nav-link">
+                    <i class="fas fa-vote-yea"></i>
+                    <span>票選系統</span>
+                </a>
+                <a href="#" class="nav-link">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>報名系統</span>
+                </a>
+                <a href="#" class="nav-link">
+                    <i class="fas fa-search-plus"></i>
+                    <span>問卷系統</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- 主要內容區域 -->
+        <div class="main-content">
+            <!-- 歡迎橫幅 -->
+            <div class="welcome-banner fade-in">
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <h4 class="mb-2">歡迎回來，張大明警員</h4>
+                        <p class="mb-0">
+                            <i class="fas fa-clock me-2"></i>上次登入時間：2024-03-06 08:30:22
+                        </p>
+                    </div>
+                    <div class="col-md-4 text-end">
+                        <img src="https://images.unsplash.com/photo-1599056407101-7c557a4a0144?w=150&h=100&fit=crop" alt="歡迎圖示" class="img-fluid rounded">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 快速存取區 -->
+            <div class="row g-4 mb-4">
+                <!-- 待處理待辦事項 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="quick-access-card fade-in">
+                        <img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=60&h=60&fit=crop" alt="待辦事項圖示">
+                        <h5>待處理待辦</h5>
+                        <div class="d-flex align-items-center justify-content-center">
+                            <h3 class="text-primary mb-0">5</h3>
+                            <small class="text-muted ms-2">項目</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 最新公告 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="quick-access-card fade-in">
+                        <img src="https://images.unsplash.com/photo-1512314889357-e157c22f938d?w=60&h=60&fit=crop" alt="公告圖示">
+                        <h5>最新公告</h5>
+                        <div class="d-flex align-items-center justify-content-center">
+                            <h3 class="text-primary mb-0">3</h3>
+							<small class="text-muted ms-2">則</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 今日行程 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="quick-access-card fade-in">
+                        <img src="https://images.unsplash.com/photo-1506784926709-22f1ec395907?w=60&h=60&fit=crop" alt="行程圖示">
+                        <h5>今日行程</h5>
+                        <div class="d-flex align-items-center justify-content-center">
+                            <h3 class="text-primary mb-0">2</h3>
+                            <small class="text-muted ms-2">項</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 待填問卷 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="quick-access-card fade-in">
+                        <img src="https://images.unsplash.com/photo-1516383740770-fbcc5ccbece0?w=60&h=60&fit=crop" alt="問卷圖示">
+                        <h5>待填問卷</h5>
+                        <div class="d-flex align-items-center justify-content-center">
+                            <h3 class="text-primary mb-0">1</h3>
+                            <small class="text-muted ms-2">份</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 最新消息和行事曆區域 -->
+            <div class="row">
+                <!-- 最新消息列表 -->
+                <div class="col-lg-8 mb-4">
+                    <div class="news-card fade-in">
+                        <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">最新消息</h5>
+                            <a href="#" class="btn btn-sm btn-outline-primary">查看全部</a>
+                        </div>
+                        <div class="card-body p-0">
+                            <!-- 新聞項目 1 -->
+                            <div class="news-item d-flex align-items-start">
+                                <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=60&h=60&fit=crop" alt="教育訓練">
+                                <div class="flex-grow-1">
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                        <div>
+                                            <span class="tag tag-danger me-2">重要</span>
+                                            <h6 class="mb-0 d-inline">2024年度教育訓練時程公告</h6>
+                                        </div>
+                                        <small class="text-muted">3天前</small>
+                                    </div>
+                                    <p class="mb-0 text-muted small">教育訓練科 - 請各單位依照時程規劃參訓人員</p>
+                                </div>
+                            </div>
+
+                            <!-- 新聞項目 2 -->
+                            <div class="news-item d-flex align-items-start">
+                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=60&h=60&fit=crop" alt="系統維護">
+                                <div class="flex-grow-1">
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                        <div>
+                                            <span class="tag tag-info me-2">系統</span>
+                                            <h6 class="mb-0 d-inline">系統維護更新通知</h6>
+                                        </div>
+                                        <small class="text-muted">5天前</small>
+                                    </div>
+                                    <p class="mb-0 text-muted small">資訊室 - 系統將於本週六進行例行性維護</p>
+                                </div>
+                            </div>
+
+                            <!-- 新聞項目 3 -->
+                            <div class="news-item d-flex align-items-start">
+                                <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=60&h=60&fit=crop" alt="活動報名">
+                                <div class="flex-grow-1">
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                        <div>
+                                            <span class="tag tag-success me-2">活動</span>
+                                            <h6 class="mb-0 d-inline">警察節慶祝活動報名開始</h6>
+                                        </div>
+                                        <small class="text-muted">1週前</small>
+                                    </div>
+                                    <p class="mb-0 text-muted small">人事室 - 歡迎同仁踴躍報名參加</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 近期行事曆 -->
+                <div class="col-lg-4 mb-4">
+                    <div class="calendar-card fade-in">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h5 class="mb-0">近期行程</h5>
+                            <a href="#" class="btn btn-sm btn-outline-primary">查看行事曆</a>
+                        </div>
+                        
+                        <!-- 行事曆項目 1 -->
+                        <div class="calendar-event">
+                            <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=40&h=40&fit=crop" alt="會議">
+                            <div>
+                                <h6 class="mb-1">勤務會報</h6>
+                                <small class="text-muted">
+                                    <i class="fas fa-calendar me-1"></i>3月8日
+                                    <i class="fas fa-clock ms-2 me-1"></i>09:00 - 10:00
+                                </small>
+                            </div>
+                        </div>
+
+                        <!-- 行事曆項目 2 -->
+                        <div class="calendar-event">
+                            <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=40&h=40&fit=crop" alt="訓練">
+                            <div>
+                                <h6 class="mb-1">教育訓練</h6>
+                                <small class="text-muted">
+                                    <i class="fas fa-calendar me-1"></i>3月10日
+                                    <i class="fas fa-clock ms-2 me-1"></i>14:00 - 16:00
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 遮罩層 -->
+    <div class="overlay"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 側邊欄切換
+        document.getElementById('sidebarCollapse').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.toggle('active');
+            document.querySelector('.overlay').classList.toggle('active');
+        });
+
+        // 點擊遮罩層關閉側邊欄
+        document.querySelector('.overlay').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.remove('active');
+            this.classList.remove('active');
+        });
+    </script>
+</body>
+</html>
