@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>瘋帽客科技 - 創新數位解決方案</title>
+    <meta property="og:url" content="http://www.madhattertw.com/"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="Madhatter Technology Corporation"/>
+    <meta property="og:description" content="專注於系統開發與資料視覺化"/>
+    <meta property="og:image" content="http://www.madhattertw.com/images/ogimage.png"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2A4365;
+            --secondary: #3B82B6;
+            --accent: #63B3ED;
+            --background: #F0F7FF;
+            --dark: #1A365D;
+        }
+
+        /* Loading Animation */
+        .loader {
+            width: 48px;
+            height: 48px;
+            border: 5px solid var(--accent);
+            border-bottom-color: transparent;
+            border-radius: 50%;
+            display: inline-block;
+            box-sizing: border-box;
+            animation: rotation 1s linear infinite;
+        }
+
+        @keyframes rotation {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* SVG Animations */
+        .rotateIn {
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .zoomIn {
+            animation: zoom 2s ease-out forwards;
+        }
+
+        @keyframes zoom {
+            from { transform: scale(0); }
+            to { transform: scale(1); }
+        }
+
+        body {
+            background-color: var(--background);
+            color: #2D3748;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--secondary) 100%);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-pattern {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero-pattern::before {
+        content: none; /* 移除原本的漸層背景 */
+    }
+
+        .tech-card {
+            transition: all 0.3s ease;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .tech-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .tech-card:hover .tech-icon {
+            transform: scale(1.1);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen fixed inset-0 bg-white flex items-center justify-center z-50">
+        <svg id="Layer_1" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+             x="0px" y="0px" viewBox="0 0 129 101" enable-background="new 0 0 129 101" xml:space="preserve" 
+             width="200" height="200">
+            <g id="text" class="fadeInUp animated">
+                <path fill="#0F2B50" d="M25.915,92.89c0.182-0.273,0.239-0.484,0.171-0.632l-2.072-8.323l-5.395,9.641l-5.307-9.639l-2.142,8.321c-0.068,0.147-0.012,0.358,0.172,0.632H7.694l4.764-17.357l6.162,11.771l6.182-11.757l4.76,17.344H25.915z"></path>
+                <!-- Original text paths -->
+                <!-- Add all original text paths here -->
+            </g>
+            <path id="hat" fill="#0F2B50" d="M42.594,48.305c0,0-1.172,0.783-0.797,2.443c0.127,0.554,0.586,1.007,0.758,2.04c0.094,0.558,0.094,0.818-0.148,1.202c0,0-0.842,0.545-0.495,1.784c0,0,0.644,2.181-0.05,2.625c0,0-0.744,0.646-0.346,2.43c0,0-0.25,2.824-1.24,2.528l-9.019-4.61c0,0-2.181-0.792-2.628,0.249c0,0-1.143,0.685,1.686,3.062c0.658,0.553,4.216,3.298,7.646,4.892c5.799,2.695,17.008,6.072,35.319,4.733c0,0,18.683-1.091,24.185-7.234c0,0,2.08-1.885,0.644-3.321c0,0-1.635-1.189-4.163,1.139c0,0-5.896,4.214-9.613,3.122c0,0,1.238-1.98-1.785-4.113l-0.246-0.445c0,0,2.131-1.338,0.049-3.172c0,0-0.396-0.495-0.298-0.991c0,0,1.982-2.428-2.329-6.146c0,0-0.496-4.211,0.1-8.077c0,0,2.131-14.768,7.632-21.31l1.058-1.314c0,0,7.467-6.516-3.14-9.587c0,0-8.425-3.023-30.726-2.43c0,0-15.361,0.397-20.219,4.015c0,0-4.411,2.577-0.396,7.582c0,0,3.84,3.071,6.246,12.587c0.461,1.821,1.588,8.045,1.959,10.163C42.717,44.894,43.149,48.091,42.594,48.305z" class="zoomIn animated"></path>
+            <g id="gear" class="rotateIn infinite animated">
+                <path fill="#D71A6E" d="M83.184,38.354c-0.071-0.081-0.151-0.155-0.239-0.223l-4.381-3.365c-0.108-0.082-0.224-0.15-0.341-0.205c0.206-1.293-0.283-2.654-1.395-3.507c-1.612-1.24-3.924-0.937-5.163,0.678c-1.239,1.612-0.937,3.925,0.677,5.163c1.111,0.853,2.554,0.975,3.748,0.441c0.083,0.1,0.179,0.194,0.287,0.277l4.38,3.365c0.088,0.068,0.181,0.125,0.276,0.173c-0.804,2.27-0.107,4.891,1.904,6.435c2.5,1.921,6.084,1.451,8.004-1.05c1.92-2.499,1.451-6.083-1.049-8.003C87.879,36.988,85.168,36.992,83.184,38.354z"></path>
+                <!-- Add other gear paths -->
+            </g>
+        </svg>
+    </div>
+
+<!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-card">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <svg id="logo-nav" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                         x="0px" y="0px" viewBox="0 0 129 101" enable-background="new 0 0 129 101" xml:space="preserve" 
+                         width="40" height="40">
+                        <!-- Same SVG content as loading screen -->
+                        <path id="hat-nav" fill="#0F2B50" d="M42.594,48.305c0,0-1.172,0.783-0.797,2.443c0.127,0.554,0.586,1.007,0.758,2.04c0.094,0.558,0.094,0.818-0.148,1.202c0,0-0.842,0.545-0.495,1.784c0,0,0.644,2.181-0.05,2.625c0,0-0.744,0.646-0.346,2.43c0,0-0.25,2.824-1.24,2.528l-9.019-4.61c0,0-2.181-0.792-2.628,0.249c0,0-1.143,0.685,1.686,3.062c0.658,0.553,4.216,3.298,7.646,4.892c5.799,2.695,17.008,6.072,35.319,4.733c0,0,18.683-1.091,24.185-7.234c0,0,2.08-1.885,0.644-3.321c0,0-1.635-1.189-4.163,1.139c0,0-5.896,4.214-9.613,3.122c0,0,1.238-1.98-1.785-4.113l-0.246-0.445c0,0,2.131-1.338,0.049-3.172c0,0-0.396-0.495-0.298-0.991c0,0,1.982-2.428-2.329-6.146c0,0-0.496-4.211,0.1-8.077c0,0,2.131-14.768,7.632-21.31l1.058-1.314c0,0,7.467-6.516-3.14-9.587c0,0-8.425-3.023-30.726-2.43c0,0-15.361,0.397-20.219,4.015c0,0-4.411,2.577-0.396,7.582c0,0,3.84,3.071,6.246,12.587c0.461,1.821,1.588,8.045,1.959,10.163C42.717,44.894,43.149,48.091,42.594,48.305z"></path>
+                    </svg>
+                    <span class="text-2xl font-bold text-primary">瘋帽客科技</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#solutions" class="flex items-center space-x-2 text-gray-700 hover:text-primary transition-colors">
+                        <i class="fas fa-lightbulb"></i>
+                        <span>解決方案</span>
+                    </a>
+                    <a href="#cases" class="flex items-center space-x-2 text-gray-700 hover:text-primary transition-colors">
+                        <i class="fas fa-briefcase"></i>
+                        <span>案例實績</span>
+                    </a>
+                    <a href="#team" class="flex items-center space-x-2 text-gray-700 hover:text-primary transition-colors">
+                        <i class="fas fa-users"></i>
+                        <span>團隊介紹</span>
+                    </a>
+                    <a href="#contact" class="flex items-center space-x-2 text-gray-700 hover:text-primary transition-colors">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>聯絡我們</span>
+                    </a>
+                </div>
+                <!-- Mobile menu button -->
+                <button class="md:hidden text-gray-700">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section - 修改版 -->
+<section class="hero-pattern min-h-screen flex items-center justify-center relative">
+    <div class="absolute inset-0">
+        <!-- 移除 opacity-70 和遮罩層 div -->
+        <video autoplay loop muted playsinline class="w-full h-full object-cover">
+            <source src="https://www.madhattertw.com/images/hero.mp4" type="video/mp4">
+        </video>
+    </div>
+    <!-- 調整文字區塊的背景以確保可讀性 -->
+    <div class="container mx-auto px-6 relative z-10">
+        <div class="max-w-4xl mx-auto text-center text-white">
+            <div class="bg-black/40 backdrop-blur-sm p-8 rounded-xl inline-block">
+                <h1 class="text-5xl md:text-6xl font-bold mb-8 animate__animated animate__fadeInUp">
+                    創新技術<br>打造數位未來
+                </h1>
+                <p class="text-xl mb-12 animate__animated animate__fadeInUp animate__delay-1s">
+                    專注於系統開發與資料視覺化，為企業提供完整的數位轉型解決方案
+                </p>
+                <div class="flex justify-center space-x-6 animate__animated animate__fadeInUp animate__delay-2s">
+                    <a href="#contact" class="px-8 py-3 border-2 border-white text-white rounded-full hover:bg-white hover:text-primary transition-colors flex items-center space-x-2">
+                        <i class="fas fa-rocket"></i>
+                        <span>開始專案</span>
+                    </a>
+                    <a href="#solutions" class="px-8 py-3 border-2 border-white text-white rounded-full hover:bg-white hover:text-primary transition-colors flex items-center space-x-2">
+                        <i class="fas fa-arrow-right"></i>
+                        <span>了解更多</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Core Features -->
+    <section class="py-20 bg-white/90">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-12">
+                <div class="text-center group">
+                    <i class="fas fa-code-branch text-5xl text-primary mb-6 transition-transform duration-300 group-hover:scale-110"></i>
+                    <h3 class="text-xl font-bold mb-4">版本控管</h3>
+                    <p class="text-gray-600">嚴謹的程式碼管理</p>
+                </div>
+                <div class="text-center group">
+                    <i class="fas fa-shield-alt text-5xl text-primary mb-6 transition-transform duration-300 group-hover:scale-110"></i>
+                    <h3 class="text-xl font-bold mb-4">資安防護</h3>
+                    <p class="text-gray-600">完整的安全機制</p>
+                </div>
+                <div class="text-center group">
+                    <i class="fas fa-tachometer-alt text-5xl text-primary mb-6 transition-transform duration-300 group-hover:scale-110"></i>
+                    <h3 class="text-xl font-bold mb-4">效能優化</h3>
+                    <p class="text-gray-600">快速回應處理</p>
+                </div>
+                <div class="text-center group">
+                    <i class="fas fa-headset text-5xl text-primary mb-6 transition-transform duration-300 group-hover:scale-110"></i>
+                    <h3 class="text-xl font-bold mb-4">技術支援</h3>
+                    <p class="text-gray-600">24小時維護服務</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technologies Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">技術生態系統</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-8">
+                <!-- Frontend -->
+                <div class="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow text-center group">
+                    <i class="fab fa-react text-4xl text-[#61DAFB] mb-2 group-hover:scale-110 transition-transform"></i>
+                    <p>React</p>
+                </div>
+                <div class="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow text-center group">
+                    <i class="fab fa-vuejs text-4xl text-[#42B883] mb-2 group-hover:scale-110 transition-transform"></i>
+                    <p>Vue.js</p>
+                </div>
+                <div class="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow text-center group">
+                    <i class="fab fa-angular text-4xl text-[#DD0031] mb-2 group-hover:scale-110 transition-transform"></i>
+                    <p>Angular</p>
+                </div>
+
+                <!-- Backend -->
+                <div class="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow text-center group">
+                    <i class="fab fa-windows text-4xl text-[#512BD4] mb-2 group-hover:scale-110 transition-transform"></i>
+                    <p>ASP.NET</p>
+                </div>
+                <div class="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow text-center group">
+                    <i class="fab fa-node-js text-4xl text-[#339933] mb-2 group-hover:scale-110 transition-transform"></i>
+                    <p>Node.js</p>
+                </div>
+                <div class="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow text-center group">
+                    <i class="fab fa-python text-4xl text-[#3776AB] mb-2 group-hover:scale-110 transition-transform"></i>
+                    <p>Python</p>
+                </div>
+
+                <!-- Cloud Services -->
+                <div class="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow text-center group">
+                    <!-- Azure SVG Logo -->
+                    <i class="fab fa-windows text-4xl text-[#512BD4] mb-2 group-hover:scale-110 transition-transform"></i>
+                    <p>Azure</p>
+                </div>
+                <div class="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow text-center group">
+                    <i class="fab fa-aws text-4xl text-[#232F3E] mb-2 group-hover:scale-110 transition-transform"></i>
+                    <p>AWS</p>
+                </div>
+            </div>
+
+            <!-- Technology Categories -->
+            <div class="mt-16 grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-xl font-bold mb-4 text-primary">前端技術</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            React & Vue.js
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            響應式設計
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            現代化UI/UX
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-xl font-bold mb-4 text-primary">後端技術</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            ASP.NET Core
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            Node.js
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            Python
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-xl font-bold mb-4 text-primary">雲端服務</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            Microsoft Azure
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            雲端架構規劃
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            容器化部署
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-xl font-bold mb-4 text-primary">開發流程</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            CI/CD
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            版本控制
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            自動化測試
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Case Studies Section - 修改版 -->
+<section id="cases" class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-bold text-center mb-16">實績案例</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Case 1 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-lg">
+                <div class="aspect-w-16 aspect-h-9">
+                    <img src="https://www.madhattertw.com/images/banner-accident.png" 
+                         alt="好理災平台" 
+                         class="w-full h-64 object-cover">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-primary mb-4">好理災-高雄市政府災害數據平台</h3>
+                    <div class="flex items-center space-x-2 mb-4 text-accent">
+                        <i class="fas fa-chart-line"></i>
+                        <span class="font-semibold">單日流量突破 10,000 人次</span>
+                    </div>
+                    <p class="text-gray-600">為使各界即時掌握災情概況，高雄市政府新聞局建置「好理災-災害數據網路平台」網站，提供即時災情資訊。</p>
+                    <div class="mt-4 flex justify-end">
+                        <a href="#" class="text-accent hover:text-primary transition-colors flex items-center space-x-2">
+                            <span>了解更多</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Case 2 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-lg">
+                <div class="aspect-w-16 aspect-h-9">
+                    <img src="https://www.madhattertw.com/images/banner-kaohsiung.png" 
+                         alt="防災通" 
+                         class="w-full h-64 object-cover">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-primary mb-4">屏東高雄防災通</h3>
+                    <div class="flex items-center space-x-2 mb-4 text-accent">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span class="font-semibold">APP 下載突破 30,000 次</span>
+                    </div>
+                    <p class="text-gray-600">瘋帽客的成員皆是來自於南部高雄子弟，為了替我們家園盡一份心力，開發完整的防災資訊系統。</p>
+                    <div class="mt-4 flex justify-end">
+                        <a href="#" class="text-accent hover:text-primary transition-colors flex items-center space-x-2">
+                            <span>了解更多</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Case 3 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-lg">
+                <div class="aspect-w-16 aspect-h-9">
+                    <img src="https://www.madhattertw.com/images/banner-pingtung.png" 
+                         alt="墾丁好行" 
+                         class="w-full h-64 object-cover">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-primary mb-4">瘋趣台灣 - 墾丁好行</h3>
+                    <div class="flex items-center space-x-2 mb-4 text-accent">
+                        <i class="fas fa-bus"></i>
+                        <span class="font-semibold">手機平板瀏覽率 65% 以上</span>
+                    </div>
+                    <p class="text-gray-600">放假不知去哪裡玩？瘋帽客與屏東客運共同聯手合作，提供便利的旅遊資訊服務。</p>
+                    <div class="mt-4 flex justify-end">
+                        <a href="#" class="text-accent hover:text-primary transition-colors flex items-center space-x-2">
+                            <span>了解更多</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Development Process -->
+    <section class="py-20 gradient-bg text-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16">開發流程</h2>
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="relative">
+                    <div class="flex items-center justify-center mb-6">
+                        <div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center">
+                            <i class="fas fa-comments text-3xl"></i>
+                        </div>
+                        <div class="absolute -right-4 w-8 h-8 bg-accent rounded-full flex items-center justify-center text-sm font-bold">1</div>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-4">需求訪談</h3>
+                    <p class="text-center text-gray-200">深入了解客戶需求，確保專案方向正確</p>
+                </div>
+
+                <div class="relative">
+                    <div class="flex items-center justify-center mb-6">
+                        <div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center">
+                            <i class="fas fa-pencil-ruler text-3xl"></i>
+                        </div>
+                        <div class="absolute -right-4 w-8 h-8 bg-accent rounded-full flex items-center justify-center text-sm font-bold">2</div>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-4">系統規劃</h3>
+                    <p class="text-center text-gray-200">制定完整的專案開發計畫與系統架構</p>
+                </div>
+
+                <div class="relative">
+                    <div class="flex items-center justify-center mb-6">
+                        <div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center">
+                            <i class="fas fa-code text-3xl"></i>
+                        </div>
+                        <div class="absolute -right-4 w-8 h-8 bg-accent rounded-full flex items-center justify-center text-sm font-bold">3</div>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-4">開發測試</h3>
+                    <p class="text-center text-gray-200">嚴謹的開發流程與完整的測試驗證</p>
+                </div>
+
+                <div class="relative">
+                    <div class="flex items-center justify-center mb-6">
+                        <div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center">
+                            <i class="fas fa-rocket text-3xl"></i>
+                        </div>
+                        <div class="absolute -right-4 w-8 h-8 bg-accent rounded-full flex items-center justify-center text-sm font-bold">4</div>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-4">上線維護</h3>
+                    <p class="text-center text-gray-200">系統部署上線與持續的維護支援</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-4">與我們聯繫</h2>
+                    <p class="text-gray-600">讓我們一起討論您的專案需求</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-12 mb-12">
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                                <i class="fas fa-phone text-primary"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold">電話</h3>
+                                <p>(07)9535368</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                                <i class="fas fa-map-marker-alt text-primary"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold">地址</h3>
+                                <p>806 高雄市前鎮區復興四路 12 號 3 樓之20<br>(高雄軟體科學園區 A棟)</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                                <i class="fas fa-clock text-primary"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold">營業時間</h3>
+                                <p>週一至週五 09:00-18:00</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form class="space-y-6">
+                        <div>
+                            <label class="block text-gray-700 mb-2">姓名</label>
+                            <input type="text" id="username" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20" placeholder="請輸入姓名">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20" placeholder="請輸入 Email">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">委託項目</label>
+                            <select id="title" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20">
+                                <option>中大型系統開發</option>
+                                <option>RWD 響應式網頁設計</option>
+                                <option>Android、IOS APP建置</option>
+                                <option>異業合作</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">專案需求描述</label>
+                            <textarea id="description" rows="4" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20" placeholder="請描述您的專案需求"></textarea>
+                        </div>
+                        <button type="submit" id="send" class="w-full bg-primary text-white py-3 rounded-lg hover:bg-primary/90 transition-colors flex items-center justify-center space-x-2">
+                            <i class="fas fa-paper-plane"></i>
+                            <span>送出委託</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <svg id="footer-logo" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                             x="0px" y="0px" viewBox="0 0 129 101" enable-background="new 0 0 129 101" xml:space="preserve" 
+                             width="40" height="40" class="text-white">
+                            <path fill="currentColor" d="M42.594,48.305c0,0-1.172,0.783-0.797,2.443..."></path>
+                        </svg>
+                        <span class="text-xl font-bold">瘋帽客科技</span>
+                    </div>
+                    <p class="text-gray-400">創新技術，打造數位未來</p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-bold mb-4">服務項目</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>
+                            <a href="#" class="hover:text-accent transition-colors flex items-center space-x-2">
+                                <i class="fas fa-chevron-right text-xs"></i>
+                                <span>系統開發</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="hover:text-accent transition-colors flex items-center space-x-2">
+                                <i class="fas fa-chevron-right text-xs"></i>
+                                <span>網站建置</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="hover:text-accent transition-colors flex items-center space-x-2">
+                                <i class="fas fa-chevron-right text-xs"></i>
+                                <span>APP開發</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-bold mb-4">聯絡資訊</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center space-x-2">
+                            <i class="fas fa-phone"></i>
+                            <span>(07)9535368</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fas fa-envelope"></i>
+                            <span>contact@madhattertw.com</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>高雄軟體科學園區</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-bold mb-4">關注我們</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent transition-colors">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+                <p>Copyright© 2024 madhatter technology Co., Ltd. All Rights Reserved.</p>
+                <a href="https://www.madhattertw.com/images/資訊安全政策.docx" class="hover:text-accent transition-colors">資訊安全政策</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Loading Animation
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.querySelector('.loading-screen').style.display = 'none';
+            }, 2000);
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Form Submission
+        document.getElementById('send').addEventListener('click', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const title = document.getElementById('title').value;
+            const email = document.getElementById('email').value;
+            const description = document.getElementById('description').value;
+
+            const xhr = new XMLHttpRequest();
+            xhr.open('post', 'https://whispering-dawn-68623.herokuapp.com/contact/post');
+            xhr.setRequestHeader("Content-type", "application/json");
+            
+            const data = JSON.stringify({
+                username: username,
+                email: email,
+                title: title,
+                description: description
+            });
+            
+            xhr.send(data);
+            xhr.onload = function() {
+                if(xhr.responseText === '寄送成功') {
+                    alert('表單已送出，我們會盡快與您聯繫！');
+                } else {
+                    alert('email 格式錯誤，請重新輸入！');
+                }
+            };
+        });
+    </script>
+</body>
+</html>
